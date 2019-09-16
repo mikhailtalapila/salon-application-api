@@ -9,7 +9,7 @@ namespace Salon.Data
         public SalonContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Salon;User Id=sa;password=Mishs571083!;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Salon;User Id=xxxxx;password=xxxxxxxx;MultipleActiveResultSets=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) { }
         public SalonContext(DbContextOptions options): base(options) {}
