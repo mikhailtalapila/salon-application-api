@@ -29,6 +29,12 @@ namespace Salon.Data.Repositories
             return MapFrom(entity);
         }
 
+        public IEnumerable<GiftCardTransactionViewModel> GetTransactions()
+        {
+            var transactions = _context.Set<GiftCardTransaction>().Include(x => x.GiftCard).OrderByDescending(x => x.TransactionDate).Select(x => MapFrom(x));
+            return transactions;
+        }
+
         public IEnumerable<GiftCardTransactionViewModel> GetTransactionsByGiftCardId(int id)
         {
             var transactions = _context.Set<GiftCardTransaction>().Include(x => x.GiftCard).Where(x => x.GiftCardId == id).Select(x => MapFrom(x));

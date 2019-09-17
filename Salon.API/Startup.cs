@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,12 +51,20 @@ namespace Salon.API
             {
                 var config = Configuration.GetSection("Cors").GetChildren();
                 var urls = config.FirstOrDefault(item => item.Key == "SalonUX").GetChildren().Select(child => child.Value).ToArray();
-                options.AddPolicy("GiftCardPolicy", builder =>
+                options.AddPolicy("SalonPolicy", builder =>
                 {
                     builder.WithOrigins(urls)
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                 });
+            });
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("SalonPolicy"));
+            });
+            services.Configure<IISOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
             });
             services.AddAutoMapper();
         }

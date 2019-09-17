@@ -31,6 +31,11 @@ namespace Salon.Service
             return _giftCardTransactionRepository.GetTransactionById(id);
         }
 
+        public IEnumerable<GiftCardTransactionViewModel> GetTransactions()
+        {
+            return _giftCardTransactionRepository.GetTransactions();
+        }
+
         public IEnumerable<GiftCardTransactionViewModel> GetTransactionsByGiftCardId(int id)
         {
             return _giftCardTransactionRepository.GetTransactionsByGiftCardId(id);

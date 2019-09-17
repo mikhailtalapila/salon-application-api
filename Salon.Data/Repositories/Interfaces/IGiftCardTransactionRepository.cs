@@ -9,6 +9,7 @@ namespace Salon.Data.Repositories.Interfaces
     {
         GiftCardTransactionViewModel GetTransactionById(int id);
         IEnumerable<GiftCardTransactionViewModel> GetTransactionsByGiftCardId(int id);
+        IEnumerable<GiftCardTransactionViewModel> GetTransactions();
         GiftCardTransactionViewModel CreateTransactionForGiftCard(GiftCardTransactionViewModel giftCardTransaction);
     }
 }
