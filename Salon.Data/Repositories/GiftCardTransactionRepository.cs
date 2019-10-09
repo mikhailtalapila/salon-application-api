@@ -31,7 +31,11 @@ namespace Salon.Data.Repositories
 
         public IEnumerable<GiftCardTransactionViewModel> GetTransactions()
         {
-            var transactions = _context.Set<GiftCardTransaction>().Include(x => x.GiftCard).OrderByDescending(x => x.TransactionDate).Select(x => MapFrom(x));
+            var transactions = _context.Set<GiftCardTransaction>()
+                .Where(x => x.TransactionDate > DateTimeOffset.Now.AddYears(-2))
+                .Include(x => x.GiftCard)
+                .OrderByDescending(x => x.TransactionDate)
+                .Select(x => MapFrom(x));
             return transactions;
         }
 

@@ -43,6 +43,10 @@ namespace Salon.API.Controllers.api.v1
             var trans = _giftCardTransactionService.CreateTransactionForGiftCard(transaction);
             return Ok(trans);
         }
+        /// <summary>
+        /// Get gift card transactions for the last 2 years
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<GiftCardTransactionViewModel>> GetTransactions()
         {
