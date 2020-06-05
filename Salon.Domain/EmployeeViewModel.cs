@@ -21,7 +21,7 @@ namespace Salon.Domain
         public string Image { get; set; }
         public string Remarks { get; set; }
         public TitleViewModel Title { get; set; }
-        public ICollection<EmployeeScheduleViewModel> EmplooyeeSchedules { get; set; }
+        public ICollection<EmployeeScheduleViewModel> EmplooyeeShifts { get; set; }
         public ICollection<NoteViewModel> Notes { get; set; }
         public ICollection<QualificationViewModel> Qualifications { get; set; }
     }

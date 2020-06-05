@@ -19,6 +19,8 @@ using Salon.Data.Repositories;
 using Salon.Data.Repositories.Interfaces;
 using Salon.Service;
 using Salon.Service.Interfaces;
+using Salon.Service.Utilities;
+using Salon.Service.Utilities.Interfaces;
 
 namespace Salon.API
 {
@@ -46,6 +48,7 @@ namespace Salon.API
             services.AddScoped<IGiftCardService, GiftCardService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IGiftCardTransactionService, GiftCardTransactionService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors(options =>
             {

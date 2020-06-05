@@ -25,7 +25,10 @@ namespace Salon.Data.Repositories
         }
         public CustomerViewModel GetCustomerById(int id)
         {
-            var customerEntity = _context.Set<Customer>().Include(x => x.Gender).Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault();
+            var customerEntity = _context.Set<Customer>()
+                .Include(x => x.Gender)
+                .Where(x => x.Id == id && x.IsDeleted == false)
+                .FirstOrDefault();
             if (customerEntity != null)
             {
                 return MapFrom(customerEntity);

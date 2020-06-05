@@ -10,8 +10,10 @@ namespace Salon.Data.Entities
     {
         public int Id { get; set; }
         public int? EmployeeId { get; set; }
-        public DateTimeOffset? Start { get; set; }
-        public TimeSpan? Duration { get; set; }
+
+        public int? TimeSpanId { get; set; }
+        [ForeignKey("TimeSpanId")]
+        public virtual TimeSlot TimeSlot { get; set; }
         public DateTimeOffset? CreatedDate { get; set; }
         public DateTimeOffset? ModifiedDate { get; set; }
         public bool? Deleted { get; set; }

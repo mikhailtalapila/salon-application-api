@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Salon.Data;
 
 namespace Salon.Data.Migrations
 {
     [DbContext(typeof(SalonContext))]
-    partial class SalonContextModelSnapshot : ModelSnapshot
+    [Migration("20200605033314_RemovedEmployeeSchedules")]
+    partial class RemovedEmployeeSchedules
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,13 +336,17 @@ namespace Salon.Data.Migrations
 
                     b.Property<DateTimeOffset?>("ModifiedDate");
 
+                    b.Property<int?>("TimeSlotId");
+
+                    b.Property<TimeSpan>("TimeSpan");
+
                     b.Property<int?>("TimeSpanId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("TimeSpanId");
+                    b.HasIndex("TimeSlotId");
 
                     b.ToTable("EmployeeShifts");
                 });
@@ -507,11 +513,11 @@ namespace Salon.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("TimeSpanId");
+                    b.Property<int?>("Duration");
+
+                    b.Property<DateTimeOffset?>("Start");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TimeSpanId");
 
                     b.ToTable("SalonSchedules");
                 });
@@ -576,8 +582,6 @@ namespace Salon.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<TimeSpan?>("Duration");
 
                     b.Property<DateTimeOffset?>("Start");
 
@@ -726,9 +730,9 @@ namespace Salon.Data.Migrations
                         .WithMany("EmployeeShifts")
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("Salon.Data.Entities.TimeSlot", "TimeSlot")
-                        .WithMany()
-                        .HasForeignKey("TimeSpanId");
+                    b.HasOne("Salon.Data.Entities.TimeSlot")
+                        .WithMany("EmployeeShifts")
+                        .HasForeignKey("TimeSlotId");
                 });
 
             modelBuilder.Entity("Salon.Data.Entities.GiftCard", b =>
@@ -762,13 +766,6 @@ namespace Salon.Data.Migrations
                     b.HasOne("Salon.Data.Entities.Service", "Service")
                         .WithMany("Qualifications")
                         .HasForeignKey("ServiceId");
-                });
-
-            modelBuilder.Entity("Salon.Data.Entities.SalonSchedule", b =>
-                {
-                    b.HasOne("Salon.Data.Entities.TimeSlot", "TimeSlot")
-                        .WithMany()
-                        .HasForeignKey("TimeSpanId");
                 });
 
             modelBuilder.Entity("Salon.Data.Entities.Service", b =>

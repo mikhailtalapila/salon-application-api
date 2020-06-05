@@ -21,6 +21,10 @@
     <Compile Remove="Migrations\20190802215720_AddedDurationToAppointmentDetail.Designer.cs" />
     <Compile Remove="Migrations\20190802220238_ChangedEmployeeShiftDurationDataType.cs" />
     <Compile Remove="Migrations\20190802220238_ChangedEmployeeShiftDurationDataType.Designer.cs" />
+    <Compile Remove="Migrations\20200605032628_RemovedEmployeeSchedules.cs" />
+    <Compile Remove="Migrations\20200605032628_RemovedEmployeeSchedules.Designer.cs" />
+    <Compile Remove="Migrations\20200605034710_AddedTimeSlot.cs" />
+    <Compile Remove="Migrations\20200605034710_AddedTimeSlot.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

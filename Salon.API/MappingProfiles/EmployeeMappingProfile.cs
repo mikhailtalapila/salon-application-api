@@ -16,12 +16,12 @@ namespace Salon.API.MappingProfiles
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
             CreateMap<Employee, EmployeeViewModel>()
                 .ForMember(x => x.Title, opt => opt.MapFrom(src => src.CurrentTitle))
-                .ForMember(x => x.EmplooyeeSchedules, opt => opt.MapFrom(src => src.EmployeeSchedules))
+                .ForMember(x => x.EmplooyeeShifts, opt => opt.MapFrom(src => src.EmployeeShifts))
                 .ForMember(x => x.Notes, opt => opt.MapFrom(src => src.Notes))
                 .ForMember(x => x.Qualifications, opt => opt.MapFrom(src => src.EmployeeQualifications));
             CreateMap<EmployeeViewModel, Employee>()
                 .ForMember(x => x.CurrentTitle, opt => opt.MapFrom(src => src.Title))
-                .ForMember(x => x.EmployeeSchedules, opt => opt.MapFrom(src => src.EmplooyeeSchedules))
+                .ForMember(x => x.EmployeeShifts, opt => opt.MapFrom(src => src.EmplooyeeShifts))
                 .ForMember(x => x.EmployeeQualifications, opt => opt.MapFrom(src => src.Qualifications));
         }
     }

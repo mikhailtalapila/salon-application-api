@@ -12,9 +12,10 @@ namespace Salon.API.MappingProfiles
     {
         public EmployeeTitleMappingProfile()
         {
-            CreateMap<TitleViewModel, EmployeeTitle>().ForMember(x => x.Description, opt => opt.MapFrom(src => src.Name));
-            CreateMap<EmployeeTitle , TitleViewModel>().ForMember(x => x.Name, opt => opt.MapFrom(src => src.Description));
-
+            CreateMap<TitleViewModel, EmployeeTitle>()
+                .ForMember(x => x.Description, opt => opt.MapFrom(src => src.Name));
+            CreateMap<EmployeeTitle , TitleViewModel>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Description));
         }
     }
 }
